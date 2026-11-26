@@ -7,6 +7,18 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum MeetingStatus {
+  SCHEDULED
+  LIVE
+  ENDED
+}
+
+enum WaitingGuestStatus {
+  WAITING
+  ADMITTED
+  REJECTED
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -15,6 +27,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  meetings      Meeting[]
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
@@ -58,4 +71,33 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Meeting {
+  id                 String         @id @default(cuid())
+  title              String         @default("Instant Meeting")
+  roomCode           String         @unique
+  hostId             String
+  host               User           @relation(fields: [hostId], references: [id], onDelete: Cascade)
+  isLocked           Boolean        @default(false)
+  waitingRoomEnabled Boolean        @default(false)
+  scheduledAt        DateTime?
+  status             MeetingStatus  @default(LIVE)
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  waitingGuests      WaitingGuest[]
+
+  @@index([hostId])
+}
+
+model WaitingGuest {
+  id         String             @id @default(cuid())
+  meetingId  String
+  meeting    Meeting            @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+  guestName  String
+  guestToken String             @unique
+  status     WaitingGuestStatus @default(WAITING)
+  createdAt  DateTime           @default(now())
+
+  @@index([meetingId])
 }
