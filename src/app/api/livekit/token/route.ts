@@ -135,8 +135,9 @@ export async function POST(req: Request) {
       session?.user?.name?.trim() ||
       "Guest";
 
-    const identity =
+    const baseIdentity =
       session?.user?.id || cleanGuestToken || crypto.randomUUID();
+    const identity = `${baseIdentity}:${crypto.randomUUID().slice(0, 6)}`;
 
     const at = new AccessToken(apiKey, apiSecret, {
       identity,

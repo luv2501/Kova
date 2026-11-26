@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { db } from "@/lib/db";
 import { normalizeRoomCode } from "@/lib/room-code";
+import { getRoomServiceClient } from "@/lib/livekit-server";
 
 export async function PATCH(
   req: Request,
@@ -83,6 +84,15 @@ export async function PATCH(
         status: true,
       },
     });
+
+    if (body.status === "ENDED") {
+      const rsc = getRoomServiceClient();
+      if (rsc) {
+        await rsc.deleteRoom(updated.roomCode).catch((err) => {
+          console.warn("LiveKit deleteRoom cleanup notice:", err);
+        });
+      }
+    }
 
     return NextResponse.json(updated, { status: 200 });
   } catch (error) {
