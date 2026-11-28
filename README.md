@@ -54,11 +54,11 @@ flowchart LR
 
 ## Product Showcase
 
-| Landing Hero | Host Dashboard |
+| Landing Hero | Authentication / Sign-In Portal |
 | :---: | :---: |
-| ![Kova Landing Hero](docs/screenshots/01-landing-hero.png) | ![Kova Host Dashboard](docs/screenshots/02-dashboard.png) |
-| **Pre-Join Green Room** | **Live Video Room** |
-| ![Kova Pre-Join Lobby](docs/screenshots/03-prejoin-lobby.png) | ![Kova Live Video Room](docs/screenshots/04-live-video-room.png) |
+| ![Kova Landing Hero](docs/screenshots/Hero%20Landing%20Page.png) | ![Kova Authentication / Sign-In Portal](docs/screenshots/Sign%20In%20%20Authentication%20Screen.png) |
+| **Live Screen Sharing & Presenter Stage** | **Multi-Participant Video Room** |
+| ![Kova Live Screen Sharing & Presenter Stage](docs/screenshots/Screen%20Sharing%20&%20Presenter%20Stage.png) | ![Kova Multi-Participant Video Room](docs/screenshots/Live%20Multi-Participant%20Video%20Call.png) |
 
 ---
 
