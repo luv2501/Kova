@@ -21,9 +21,12 @@ export function Navbar({ isLoggedIn = false }: NavbarProps) {
           >
             /
           </span>
-          <span className="hidden sm:inline font-mono text-[11px] text-[#6B6B70] dark:text-[#8E8E93] tracking-wider">
-            hello@kova.meet
-          </span>
+          <a
+            href="mailto:luvagarwal2501@gmail.com"
+            className="hidden sm:inline font-mono text-[11px] text-[#6B6B70] dark:text-[#8E8E93] hover:text-[#111113] dark:hover:text-[#F2C594] tracking-wider transition-colors duration-150"
+          >
+            luvagarwal2501@gmail.com
+          </a>
         </div>
 
         {/* Center: Smooth Scroll Navigation Links */}
